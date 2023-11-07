@@ -50,7 +50,7 @@ function CurrentWeather({ selectedDay, setSelectedDay, weatherDataForFiveDays, c
             )}
             {selectedDay && weatherDataForFiveDays ? (
                <div className={styles['five-days']}>
-                  <h2 className={styles.title}>Детальний прогноз для <span className={styles.italic}>{new Date(selectedDay * 1000).toLocaleDateString()}</span></h2>
+                  <h2 className={styles.title}>Детальний прогноз на <span className={styles.italic}>{new Date(selectedDay * 1000).toLocaleDateString()}</span></h2>
                   <ul className={styles["weather-list"]}>
                      {weatherDataForFiveDays.list
                         .filter(item => {

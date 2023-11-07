@@ -9,7 +9,6 @@ import CurrentWeather from './components/currentWeather/CurrentWeather';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-
 const router = createBrowserRouter([
   {
     path: '/',
@@ -17,8 +16,7 @@ const router = createBrowserRouter([
       <Layout>
         <App />
       </Layout>
-    ),
-    
+    ),    
   },
   {
     path: 'currentWeather',
@@ -41,7 +39,4 @@ const router = createBrowserRouter([
     ),
   },
 ]);
-
-
-
 root.render(<RouterProvider router={router} />);

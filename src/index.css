@@ -92,3 +92,12 @@ li {
 img {
   width: 100px;
 }
+h1,h2,h3,h4{
+  margin-bottom: 0;
+}
+input{
+  padding: 0 10px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+}
