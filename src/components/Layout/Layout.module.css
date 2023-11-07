@@ -1,0 +1,16 @@
+.layout-inner {
+   position: relative;
+   width: 100%;
+   height: 100%;
+}
+
+.wrapper {
+   position: absolute;
+   top: 0;
+   left: 0;
+   z-index: 100;
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   height: 100vh;
+}

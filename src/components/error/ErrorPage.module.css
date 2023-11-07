@@ -1,0 +1,9 @@
+.error{
+   width: 100%;
+   height: 100vh;
+   overflow: hidden;
+}
+.errImg{
+   display: block;
+   width: 100%;
+}

@@ -1,17 +1,47 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { createBrowserRouter, RouterProvider,} from "react-router-dom";
+import ErrorPage from './components/error/ErrorPage';
+import Layout from './components/Layout/Layout';
+import App from './components/App/App';
+import CurrentWeather from './components/currentWeather/CurrentWeather';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: (
+      <Layout>
+        <App />
+      </Layout>
+    ),
+    
+  },
+  {
+    path: 'currentWeather',
+    element: (
+      <Layout>
+        <CurrentWeather/>
+      </Layout>
+    ),
+  },
+  {
+    path: '*',
+    element: (      
+      <ErrorPage />      
+    ),
+  },
+  {
+    path: 'errorpage',
+    element: (      
+      <ErrorPage />      
+    ),
+  },
+]);
+
+
+
+root.render(<RouterProvider router={router} />);
