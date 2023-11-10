@@ -6,7 +6,7 @@ import axios from "axios";
 export default function Layout({ children }) {
    const [coordinates, setCoordinates] = useState({ latitude: null, longitude: null });
    const [weatherData, setWeatherData] = useState(null);
-   const apiKey = '64329eef184eb17bc7d6ec7ebe2a51d3';
+   const apiKey = 'ee877d78c32dc168305526a0ce46ed32';
    const [hourlyForecast, setHourlyForecast] = useState([]);
    const [cityInput, setCityInput] = useState("");
    const [selectedDay, setSelectedDay] = useState(null);
