@@ -25,7 +25,8 @@
 }
 .weather-today{
    margin: 30px auto;
-   width: 800px;
+   max-width: 800px;
+   width: 100%;
    display: flex;
    justify-content: center;
    border: 1px solid #444c5c;
@@ -71,4 +72,34 @@
 }
 .date{
    font-size: 30px;
+}
+.flex{
+   display:flex;
+   gap: 10px;
+}
+
+@media(max-width: 800px){
+   .location{
+      flex-direction: column;
+   }
+   .weather-today{
+      flex-direction: column;
+   }
+   .weahter-today-item{
+      width: 100%;   
+   }
+}
+
+@media(max-width: 500px){
+   .flex{
+      flex-direction: column;
+      align-items: center;
+      flex-wrap: wrap;
+   }
+   .search{
+      width: 200px;
+   }
+   .weahter-today-item{
+      text-align: center;  
+   }
 }

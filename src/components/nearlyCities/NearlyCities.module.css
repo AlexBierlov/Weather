@@ -27,6 +27,7 @@
    display: flex;
    justify-content: center;
    align-items: center;
+   flex-wrap: wrap;
 }
 .tac{
    text-align: center;
@@ -38,3 +39,5 @@
    align-items: center;
    justify-content: center;
 }
+
+

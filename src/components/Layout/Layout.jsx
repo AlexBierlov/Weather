@@ -5,6 +5,7 @@ import axios from "axios";
 
 export default function Layout({ children }) {
    const [coordinates, setCoordinates] = useState({ latitude: null, longitude: null });
+   const [country, setCountry] = useState('');
    const [weatherData, setWeatherData] = useState(null);
    const apiKey = 'ee877d78c32dc168305526a0ce46ed32';
    const [hourlyForecast, setHourlyForecast] = useState([]);
@@ -12,17 +13,19 @@ export default function Layout({ children }) {
    const [selectedDay, setSelectedDay] = useState(null);
    const [weatherDataForFiveDays, setWeatherDataForFiveDays] = useState(null)
    const myCity = 'Ivano-Frankivsk';
+   
 
    // Погода по координатам
 
-   const getWeatherDataByCoordinates = (latitude, longitude, history) => {
+   const getWeatherDataByCoordinates = (latitude, longitude) => {
       axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`)
          .then(response => {
             setWeatherData(response.data);
+            setCountry(response.data.sys.country);
          })
          .catch(error => {
             console.error('Ошибка при получении данных о погоде:', error);            
-         });
+         });         
    };
 
    const getWeatherAndHourlyForecast = (city) => {
@@ -83,16 +86,17 @@ export default function Layout({ children }) {
       }
    }
 
-   // запрос текущего прогноза 
+   // запрос текущего прогноза по названию города
 
    const getWeatherDataByCity = (city) => {
       axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
          .then(response => {
             setWeatherData(response.data);
+            setCountry(response.data.sys.country);            
          })
          .catch(error => {
             console.error('Ошибка при получении данных о погоде:', error);
-         });
+         });        
    }
 
    const handleCityInputChange = (event) => {
@@ -122,6 +126,9 @@ export default function Layout({ children }) {
             console.error('Помилка при отриманні даних про погоду:', error);
          });
    }
+   if(country !== ""){
+      console.log(country);
+   }
 
    useEffect(() => {
       if ('geolocation' in navigator) {
@@ -145,7 +152,7 @@ export default function Layout({ children }) {
       <div className={styles["layout-inner"]}>
          <div className={styles.wrapper}>
             <Header />
-            {cloneElement(children, { coordinates, weatherData, cityInput, getHourlyForecastByCity, handleCityInputChange, getWeatherAndHourlyForecast, hourlyForecast, weatherForFiveDays, selectedDay, setSelectedDay, weatherDataForFiveDays, weatheForFiveDaysByCity })}
+            {cloneElement(children, { coordinates, weatherData, cityInput, getHourlyForecastByCity, handleCityInputChange, getWeatherAndHourlyForecast, hourlyForecast, weatherForFiveDays, selectedDay, setSelectedDay, weatherDataForFiveDays, weatheForFiveDaysByCity, country })}
          </div>
       </div>
    );

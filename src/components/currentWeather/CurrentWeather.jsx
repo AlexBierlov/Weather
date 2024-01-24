@@ -1,8 +1,20 @@
 import Loader from '../loader/Loader';
 import styles from './CurrentWeathe.module.css';
 import { FcSearch } from "react-icons/fc";
+import { useEffect, useState } from 'react';
 
 function CurrentWeather({ selectedDay, setSelectedDay, weatherDataForFiveDays, cityInput, handleCityInputChange, weatherData, getWeatherAndHourlyForecast, weatheForFiveDaysByCity }) {
+   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+   const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+   };
+   useEffect(() => {
+      window.addEventListener('resize', handleResize);
+      return () => {
+         window.removeEventListener('resize', handleResize);
+      }
+   }, []);
    return (
       <div className="wrap">
          <div className="container">
@@ -14,10 +26,7 @@ function CurrentWeather({ selectedDay, setSelectedDay, weatherDataForFiveDays, c
                   value={cityInput}
                   onChange={handleCityInputChange}
                />
-               <button className={styles.search} onClick={() => {
-                  getWeatherAndHourlyForecast(cityInput);
-                  weatheForFiveDaysByCity(cityInput);
-               }}><FcSearch /></button>
+               <button className={styles.search} onClick={() => getWeatherAndHourlyForecast(cityInput)}><FcSearch /> {windowWidth <= 500 ? 'Пошук' : ''}</button>
             </div>
             {weatherDataForFiveDays ? (
                <div className={styles['five-days']}>
